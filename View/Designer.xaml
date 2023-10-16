@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="Breakout.View.Designer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Breakout.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <WrapPanel Background="Black" 
+           Orientation="Vertical" 
+           Opacity="0.75"                         
+           Visibility="{Binding Info.DisplayDesigner, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <WrapPanel>
+                <Label Content="Game" Foreground="White"/>
+
+                <Label Content="Width:"/>
+                <Label Content="{Binding Settings.GameWidth}"/>
+                <Label Content="Height:"/>
+                <Label Content="{Binding Settings.GameHeight}"/>
+                <Label Content="Pause:"/>
+                <Label Content="{Binding Info.IsGamePaused}"/>
+                <Label Content="Game Over:"/>
+                <Label Content="{Binding Info.IsGameOver}"/>
+                <Label Content="FPS:"/>
+                <Label Content="{Binding Info.FPS}"/>
+                <Label Content="Frames:"/>
+                <Label Content="{Binding Info.FramesCounter}"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Content="Stage" Foreground="White"/>
+
+                <Label Content="No."/>
+                <Label Content="{Binding Info.Stage}"/>
+                <Label Content="Columns"/>
+                <Label Content="{Binding Info.StageBlockColumns}"/>
+                <Label Content="Rows"/>
+                <Label Content="{Binding Info.StageBlockRows}"/>
+                <Label Content="Blocks"/>
+                <Label Content="{Binding Blocks.Count}"/>
+
+            </WrapPanel>
+            <WrapPanel>
+                <Label Content="Boards" Foreground="White"/>
+
+                <Label Content="Momentum"/>
+                <Label Content="{Binding Mechanics.BoardMomentum}" Width="55"/>
+                <Label Content="Brake"/>
+                <Label Content="{Binding Mechanics.BoardIsBraking}"/>
+                <Label Content="Go Left"/>
+                <Label Content="{Binding Mechanics.BoardGoLeft}"/>
+                <Label Content="Go Right"/>
+                <Label Content="{Binding Mechanics.BoardGoRight}"/>
+            </WrapPanel>
+            <ListView ItemsSource="{Binding Boards}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Position" Width="220">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <WrapPanel>
+                                            <Label Content="X:"/>
+                                            <Label Content="{Binding Data.Position.X}"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Y:"/>
+                                            <Label Content="{Binding Data.Position.Y}"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Top Corners" Width="260">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <WrapPanel>
+                                            <Label Content="Left:"/>
+                                            <Label Content="{Binding Data.PointCornerLeftTop}"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Right:"/>
+                                            <Label Content="{Binding Data.PointCornerRightTop}"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <WrapPanel>
+                <Label Content="Balls" Foreground="White"/>
+
+                <Label Content="Speed"/>
+                <Label Content="{Binding Mechanics.BallSpeed}" Width="55"/>
+            </WrapPanel>
+            <ListView ItemsSource="{Binding Balls}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Position" Width="220">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <WrapPanel>
+                                            <Label Content="X:"/>
+                                            <Label Content="{Binding Data.Position.X}"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Y:"/>
+                                            <Label Content="{Binding Data.Position.Y}"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Direction" Width="220">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <WrapPanel>
+
+                                            <Label Content="{Binding Direction}"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Length"/>
+                                            <Label Content="{Binding VectorLength}"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Edge Center Points X" Width="400">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <WrapPanel>
+                                            <Label Content="Left:"/>
+                                            <Label Content="{Binding Data.PointCenterEdgeLeft}"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Right:"/>
+                                            <Label Content="{Binding Data.PointCenterEdgeRight}"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Edge Center Points Y" Width="400">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <WrapPanel>
+                                            <Label Content="Top:"/>
+                                            <Label Content="{Binding Data.PointCenterEdgeTop}"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Bottom:"/>
+                                            <Label Content="{Binding Data.PointCenterEdgeBottom}"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </WrapPanel>
+    </Grid>
+</UserControl>
