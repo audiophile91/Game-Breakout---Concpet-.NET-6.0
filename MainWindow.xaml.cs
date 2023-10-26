@@ -209,6 +209,7 @@ namespace Breakout
             switch (++Info.Stage)
             {
                 case 1: StageLoad_1(); break;
+                case 2: StageLoad_2(); break;
             }
         }
 
@@ -221,6 +222,22 @@ namespace Breakout
                 for (uint j = 0; j < Info.StageBlockColumns; j++)
                 {
                     Mechanics.StageGenerateBlock(j, i);
+                }
+            }
+        }
+
+        private void StageLoad_2()
+        {
+            Mechanics.StageSetLayout(50, 10);
+
+            for (uint i = 0; i < Info.StageBlockRows; i++)
+            {
+                for (uint j = 0; j < Info.StageBlockColumns; j++)
+                {
+                    if ((i + j) % 2 == 0)
+                    {
+                        Mechanics.StageGenerateBlock(j, i);
+                    }             
                 }
             }
         }
